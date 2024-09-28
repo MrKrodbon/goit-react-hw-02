@@ -1,0 +1,9 @@
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.SendBtn {
+  border: 1px solid gray;
+}

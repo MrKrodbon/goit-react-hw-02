@@ -1,0 +1,10 @@
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.feedbackContent {
+  font-size: 20px;
+  font-weight: bold;
+}
