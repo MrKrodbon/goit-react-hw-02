@@ -1,6 +1,12 @@
 import styles from "./Options.module.css";
 
-const Options = ({ totalFeedback, setFeedback }) => {
+// const resetFeedback = (feedbackType) => {
+//   feedbackType.good = 0;
+//   feedbackType.neutral = 0;
+//   feedbackType.bad = 0;
+// };
+
+const Options = ({ totalFeedback, setFeedback, resetFeedback }) => {
   return (
     <div className={styles.btnContainer}>
       <button className={styles.SendBtn} onClick={() => setFeedback("good")}>
@@ -13,7 +19,10 @@ const Options = ({ totalFeedback, setFeedback }) => {
         Bad
       </button>
       {totalFeedback > 0 && (
-        <button className={styles.SendBtn} onClick={() => setFeedback("reset")}>
+        <button
+          className={styles.SendBtn}
+          onClick={() => resetFeedback("reset")}
+        >
           Reset
         </button>
       )}

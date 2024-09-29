@@ -7,20 +7,37 @@ import Notification from "./components/Notification/Notification.jsx";
 
 function App() {
   const [feedback, setFeedback] = useState(() => {
-    const savedGood = window.localStorage.getItem("good");
-    const savedNeutral = window.localStorage.getItem("neutral");
-    const savedBad = window.localStorage.getItem("bad");
+    const savedFeedbacks = window.localStorage.getItem("feedback");
 
-    return {
-      good: savedGood ? parseInt(savedGood) : 0,
-      neutral: savedNeutral ? parseInt(savedNeutral) : 0,
-      bad: savedBad ? parseInt(savedBad) : 0,
-    };
+    if (savedFeedbacks !== null) {
+      return JSON.parse(savedFeedbacks);
+    } else {
+      return {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      };
+    }
   });
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+
+  const resetFeedback = (feedbackType) => {
+    setFeedback((feedbackToReset) => {
+      if (feedbackType === "reset") {
+        return {
+          ...feedbackToReset,
+          good: 0,
+          neutral: 0,
+          bad: 0,
+          totalFeedback: 0,
+          positiveFeedback: 0,
+        };
+      }
+    });
+  };
 
   const updateFeedback = (feedbackType) => {
     setFeedback((prevFeedbackType) => {
@@ -41,27 +58,25 @@ function App() {
             bad: prevFeedbackType.bad + 1,
           };
         case "reset":
-          return {
-            ...prevFeedbackType,
-            good: 0,
-            neutral: 0,
-            bad: 0,
-          };
+          resetFeedback(prevFeedbackType);
+          break;
         default:
-          return { prevFeedbackType };
+          return prevFeedbackType;
       }
     });
   };
 
   useEffect(() => {
-    window.localStorage.setItem("good", feedback.good);
-    window.localStorage.setItem("neutral", feedback.neutral);
-    window.localStorage.setItem("bad", feedback.bad);
+    window.localStorage.setItem("feedback", JSON.stringify(feedback));
   }, [feedback]);
   return (
     <>
       <Description />
-      <Options setFeedback={updateFeedback} totalFeedback={totalFeedback} />
+      <Options
+        setFeedback={updateFeedback}
+        resetFeedback={resetFeedback}
+        totalFeedback={totalFeedback}
+      />
       {totalFeedback === 0 ? (
         <Notification />
       ) : (
