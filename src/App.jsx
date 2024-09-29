@@ -32,8 +32,6 @@ function App() {
           good: 0,
           neutral: 0,
           bad: 0,
-          totalFeedback: 0,
-          positiveFeedback: 0,
         };
       }
     });
