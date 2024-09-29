@@ -1,11 +1,5 @@
 import styles from "./Options.module.css";
 
-// const resetFeedback = (feedbackType) => {
-//   feedbackType.good = 0;
-//   feedbackType.neutral = 0;
-//   feedbackType.bad = 0;
-// };
-
 const Options = ({ totalFeedback, setFeedback, resetFeedback }) => {
   return (
     <div className={styles.btnContainer}>

@@ -55,9 +55,6 @@ function App() {
             ...prevFeedbackType,
             bad: prevFeedbackType.bad + 1,
           };
-        case "reset":
-          resetFeedback(prevFeedbackType);
-          break;
         default:
           return prevFeedbackType;
       }
