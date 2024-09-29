@@ -24,16 +24,14 @@ function App() {
 
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
 
-  const resetFeedback = (feedbackType) => {
+  const resetFeedback = () => {
     setFeedback((feedbackToReset) => {
-      if (feedbackType === "reset") {
-        return {
-          ...feedbackToReset,
-          good: 0,
-          neutral: 0,
-          bad: 0,
-        };
-      }
+      return {
+        ...feedbackToReset,
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      };
     });
   };
 

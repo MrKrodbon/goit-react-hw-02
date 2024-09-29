@@ -13,10 +13,7 @@ const Options = ({ totalFeedback, setFeedback, resetFeedback }) => {
         Bad
       </button>
       {totalFeedback > 0 && (
-        <button
-          className={styles.SendBtn}
-          onClick={() => resetFeedback("reset")}
-        >
+        <button className={styles.SendBtn} onClick={() => resetFeedback()}>
           Reset
         </button>
       )}
